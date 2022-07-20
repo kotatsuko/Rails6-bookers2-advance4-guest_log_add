@@ -43,6 +43,56 @@
           </tr>
         </tbody>
       </table>
+      <h2>7日分の投稿数</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>6日前</th>
+            <th>5日前</th>
+            <th>4日前</th>
+            <th>3日前</th>
+            <th>2日前</th>
+            <th>1日前</th>
+            <th>今日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @six_days_ago_books.count %></td>
+            <td><%= @five_days_ago_books.count %></td>
+            <td><%= @four_days_ago_books.count %></td>
+            <td><%= @three_days_ago_books.count %></td>
+            <td><%= @two_days_ago_books.count %></td>
+            <td><%= @yesterday_books.count %></td>
+            <td><%= @today_books.count %></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <canvas id="myChart"></canvas>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['6日前', '5日前', '4日前', '3日前', '2日前', '昨日', '今日'],
+          datasets: [{
+            label: '# 一週間の投稿状況',
+            data: [<%= @six_days_ago_books.count %>,<%= @five_days_ago_books.count %>,<%= @four_days_ago_books.count %>,<%= @three_days_ago_books.count %>,<%= @two_days_ago_books.count %>,<%= @yesterday_books.count %>,<%= @today_books.count %>],
+            borderColor: "rgb(0,0,255)",
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+                beginAtZero: true
+            }
+          }
+        }
+        });
+        </script>
     </div>
   </div>
 </div>

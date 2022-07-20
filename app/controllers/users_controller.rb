@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     else
       @compared_week = (@week_books.count / @lastweek_books.count) * 100
     end
+    @two_days_ago_books = @books.where(created_at: 2.day.ago.all_day)
+    @three_days_ago_books = @books.where(created_at: 3.day.ago.all_day)
+    @four_days_ago_books = @books.where(created_at: 4.day.ago.all_day)
+    @five_days_ago_books = @books.where(created_at: 5.day.ago.all_day)
+    @six_days_ago_books = @books.where(created_at: 6.day.ago.all_day)
     @book = Book.new
   end
 
